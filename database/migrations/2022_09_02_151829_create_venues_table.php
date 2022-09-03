@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('venues', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->longText('description')->nullable();
             $table->string('location');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('facebook_link')->nullable();
             $table->string('instagram_link')->nullable();
-            $table->boolean('available')->default('true');
+            $table->boolean('available')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

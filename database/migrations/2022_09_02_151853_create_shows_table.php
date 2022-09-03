@@ -14,13 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('shows', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('name');
             $table->longText('description')->nullable();
             $table->dateTime('start_time');
-            $table->foreignId('venue_id')->constrained()->onUpdate('cascade')->onDelete('null');
-            $table->foreignId('artist_id')->constrained()->onUpdate('cascade')->onDelete('null');
-            $table->boolean('enabled')->default('true');
+            $table->foreignId('venue_id')->constrained('venues')->onUpdate('cascade')->onDelete(null);
+            $table->foreignId('artist_id')->constrained('artists')->onUpdate('cascade')->onDelete(null);
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

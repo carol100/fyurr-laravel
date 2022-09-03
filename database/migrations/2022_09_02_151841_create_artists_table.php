@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('artists', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('first_name');
             $table->string('last_name');
             $table->string('stage_name');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('genres')->nullable();
             $table->string('facebook_link')->nullable();
             $table->string('instagram_link')->nullable();
-            $table->boolean('available')->default('true');
+            $table->boolean('available')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });
