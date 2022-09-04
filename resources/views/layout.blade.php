@@ -35,6 +35,7 @@
     <script type="text/javascript" src="{{ asset('assets/js/script.js') }}" defer></script>
     <!--[if lt IE 9]><script src="/static/js/libs/respond-1.4.2.min.js"></script><![endif]-->
     <!-- /scripts -->
+    @vite('resources/js/app.js')
 </head>
 
 <body>
