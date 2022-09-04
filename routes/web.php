@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\ArtistController;
 use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('artists', function () {
-    // 
-})->name('artists');
+Route::resource('artists', ArtistController::class);
 
 Route::get('venues', function () {
     // 
