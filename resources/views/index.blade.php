@@ -14,8 +14,8 @@
                 <a href="/venues/create"><button class="btn btn-default btn-lg">Post a venue</button></a>
             </h3>
             <h3>
-                <a href="/artists"><button class="btn btn-primary btn-lg">Find an artist</button></a>
-                <a href="/artists/create"><button class="btn btn-default btn-lg">Post an artist</button></a>
+                <a href="{{ route('artists.index') }}"><button class="btn btn-primary btn-lg">Find an artist</button></a>
+                <a href="{{ route('artists.create') }}"><button class="btn btn-default btn-lg">Post an artist</button></a>
             </h3>
             <p class="lead">Publicize about your show for free.</p>
             <h3>
