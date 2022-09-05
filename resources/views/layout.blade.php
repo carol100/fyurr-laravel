@@ -73,7 +73,7 @@
                     </ul>
                     <ul class="nav navbar-nav">
                         <li @if (Request::url() === 'venues') class="active" @endif><a
-                                href="{{ route('venues') }}">Venues</a></li>
+                                href="{{ route('venues.index') }}">Venues</a></li>
                         <li @if (Request::url() === 'artists') class="active" @endif><a
                                 href="{{ route('artists.index') }}">Artists</a></li>
                         <li @if (Request::url() === 'shows') class="active" @endif><a

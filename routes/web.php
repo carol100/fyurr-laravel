@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Web\VenueController;
 use App\Http\Controllers\Web\ArtistController;
 use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +20,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::resource('artists', ArtistController::class);
 
-Route::get('venues', function () {
-    // 
-})->name('venues');
-
+Route::resource('venues', VenueController::class);
 Route::get('shows', function () {
     // 
 })->name('shows');

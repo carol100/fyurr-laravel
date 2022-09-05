@@ -7,4 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Venue extends BaseModel
 {
+    protected $casts = [
+        'available' => 'boolean',
+    ];
 }
