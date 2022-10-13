@@ -34,7 +34,7 @@
             </p>
             <p>
                 <i class="fab fa-facebook-f"></i>
-                <a href="{{ $venue->facebook_link }}" target='_blank'></a>
+                <a href="{{ $venue->facebook_link }}" target='_blank'>{{ $venue->facebook_link }}</a>
             </p>
 
             @if ($venue->available)
