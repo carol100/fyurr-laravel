@@ -57,13 +57,13 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li>
-                            @if (Request::url() === 'venues' || Request::url() === 'search_venues' || Request::url() === 'show_venue')
+                            @if (Request::path() === 'venues' || Request::path() === 'search_venues' || Request::path() === 'show_venue')
                                 <form class="search" method="post" action="/venues/search">
                                     <input class="form-control" type="search" name="search_term"
                                         placeholder="Find a venue" aria-label="Search">
                                 </form>
                             @endif
-                            @if (Request::url() === 'artists' || Request::url() === 'search_artists' || Request::url() === 'show_artist')
+                            @if (Request::path() === 'artists' || Request::path() === 'search_artists' || Request::path() === 'show_artist')
                                 <form class="search" method="post" action="/artists/search">
                                     <input class="form-control" type="search" name="search_term"
                                         placeholder="Find an artist" aria-label="Search">
@@ -72,11 +72,11 @@
                         </li>
                     </ul>
                     <ul class="nav navbar-nav">
-                        <li @if (Request::url() === 'venues') class="active" @endif><a
+                        <li @if (Request::path() === 'venues') class="active" @endif><a
                                 href="{{ route('venues.index') }}">Venues</a></li>
-                        <li @if (Request::url() === 'artists') class="active" @endif><a
+                        <li @if (Request::path() === 'artists') class="active" @endif><a
                                 href="{{ route('artists.index') }}">Artists</a></li>
-                        <li @if (Request::url() === 'shows') class="active" @endif><a
+                        <li @if (Request::path() === 'shows') class="active" @endif><a
                                 href="{{ route('shows') }}">Shows</a></li>
                     </ul>
                 </div>
