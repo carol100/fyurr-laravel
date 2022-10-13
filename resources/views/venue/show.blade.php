@@ -17,7 +17,7 @@
                 <i class="fas fa-globe-americas"></i> {{ $venue->location }},
             </p>
             <p>
-                <i class="fas fa-map-marker"></i> {{ $venue->address ? $venue->address : '' }}
+                <i class="fas fa-address-card"></i> {{ $venue->address ? $venue->address : '' }}
             </p>
             <p>
                 <i class="fas fa-map-marker"></i> {{ $venue->description ? $venue->description : '' }}
@@ -26,28 +26,29 @@
                 <i class="fas fa-phone-alt"></i> {{ $venue->phone_number ? $venue->phone_number : 'No contacts' }}
             </p>
             <p>
-                <i class="fas fa-map-marker"></i>
+                <i class="fas fa-user"></i>
                 {{ $venue->contact_person_name ? $venue->contact_person_name : 'No contact Person details' }}
             </p>
             <p>
-                <i class="fas fa-map-marker"></i> {{ $venue->email ? $venue->email : 'No email' }}
+                <i class="fas fa-envelope-open"></i> {{ $venue->email ? $venue->email : 'No email' }}
             </p>
             <p>
                 <i class="fab fa-facebook-f"></i>
-                <a href="{{ $venue->facebook_link }} target='_blank'" </p>
-                    @if ($venue->available)
-                        <div class="seeking">
-                            <p class="lead">Currently seeking talent</p>
-                            <div class="description">
-                                <i class="fas fa-quote-left"></i> {{ $venue->availability }} <i
-                                    class="fas fa-quote-right"></i>
-                            </div>
-                        </div>
-                    @else
-                        <p class="not-seeking">
-                            <i class="fas fa-moon"></i> Not currently seeking talent
-                        </p>
-                    @endif
+                <a href="{{ $venue->facebook_link }}" target='_blank'></a>
+            </p>
+
+            @if ($venue->available)
+                <div class="seeking">
+                    <p class="lead">Currently seeking talent</p>
+                    <div class="description">
+                        <i class="fas fa-quote-left"></i> {{ $venue->availability }} <i class="fas fa-quote-right"></i>
+                    </div>
+                </div>
+            @else
+                <p class="not-seeking">
+                    <i class="fas fa-moon"></i> Not currently seeking talent
+                </p>
+            @endif
         </div>
         <div class="col-sm-6">
             <img src="{{ asset('storage/' . $venue->image) }}"alt="Venue Image" />
