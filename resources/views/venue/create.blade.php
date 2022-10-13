@@ -13,45 +13,48 @@
             <div class="form-group row">
                 <label for="name" class="col-sm-3 col-form-label">Name</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="name" autofocus>
+                    <input type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="description" class="col-sm-3 col-form-label">Description</label>
                 <div class="col-sm-9">
-                    <textarea name="description" class="form-control" id="description"></textarea>
+                    <textarea name="description" class="form-control" id="description">
+                        {{ old('description') }}
+                    </textarea>
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="location" class="col-sm-3 col-form-label">Location</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="location">
+                    <input type="text" class="form-control" name="location" value="{{ old('location') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="address" class="col-sm-3 col-form-label">Address</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="address">
+                    <input type="text" class="form-control" name="address" value="{{ old('address') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="contact_person_name" class="col-sm-3 col-form-label">Contact Person</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="contact_person_name">
+                    <input type="text" class="form-control" name="contact_person_name"
+                        value="{{ old('contact_person_name') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="phone_number" class="col-sm-3 col-form-label">Phone Number </label>
                 <div class="col-sm-9">
-                    <input type="tel" class="form-control" name="phone_number" maxlength="12"
-                        placeholder='xxx-xxx-xxxx'>
+                    <input type="tel" class="form-control" name="phone_number" maxlength="12" placeholder='xxx-xxx-xxxx'
+                        value="{{ old('phone_number') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-sm-3 col-form-label">Email</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="email" id="email">
+                    <input type="text" class="form-control" name="email" id="email" value="{{ old('email') }}">
                 </div>
             </div>
             <div class="form-group row">
@@ -63,13 +66,13 @@
             <div class="form-group row">
                 <label for="facebook_link" class="col-sm-3 col-form-label">Facebook Link </label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="facebook_link">
+                    <input type="text" class="form-control" name="facebook_link" value="{{ old('facebook_link') }}">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="instagram_link" class="col-sm-3 col-form-label">Instagram Link </label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" name="instagram_link">
+                    <input type="text" class="form-control" name="instagram_link" value="{{ old('instagram_link') }}">
                 </div>
             </div>
             <div form-group>
