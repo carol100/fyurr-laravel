@@ -51,8 +51,13 @@
             @endif
         </div>
         <div class="col-sm-6">
-            <img src="{{ asset('storage/' . $venue->image) }}"alt="Venue Image" />
+            @if ($venue->image)
+                <img src="{{ asset('storage/' . $venue->image) }}"alt="Venue Image" />
+            @else
+                <img src="{{ asset('assets/img/default-image.png') }}" alt="">
+            @endif
         </div>
+
     </div>
     <section>
         <h2 class="monospace"> {{ 00 }}Upcoming
