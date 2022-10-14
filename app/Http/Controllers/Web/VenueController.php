@@ -114,9 +114,9 @@ class VenueController extends Controller
         $venue = Venue::find($id);
 
         $request->validate([
-            'name' => 'required|unique:venues,name',
+            'name' => 'required',
             'contact_person_name' => 'max:255',
-            'phone_number' => 'required|unique:venues,phone_number',
+            'phone_number' => 'required',
             'email' => 'required|email|max:255',
             'image' => 'image|mimes:jpg,png,jpeg,gif',
             'facebook_link' => 'max: 255',
@@ -134,7 +134,10 @@ class VenueController extends Controller
         $venue->available = $this->toBoolean($request->available);
         $venue->save();
 
-        return redirect()->route('venues.edit', ['venue' => $venue]);
+        return redirect('/venues')->with([
+            'message' => 'Venue updated successfully!',
+            'venue' => $venue
+        ]);
     }
 
     /**
