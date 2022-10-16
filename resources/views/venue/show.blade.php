@@ -6,6 +6,8 @@
 @section('content')
     <div class="row">
         <div class="col-sm-6">
+            <a href="/venues"><button class="btn btn-primary btn-lg">Back</button></a>
+
             <h1 class="monospace">
                 {{ $venue->name }}
             </h1>
