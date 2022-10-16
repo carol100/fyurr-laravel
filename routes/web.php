@@ -21,6 +21,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::resource('artists', ArtistController::class);
 
 Route::resource('venues', VenueController::class);
+Route::post('venues/search', [VenueController::class, 'search']);
 Route::get('shows', function () {
     // 
 })->name('shows');

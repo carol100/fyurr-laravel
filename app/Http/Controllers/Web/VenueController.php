@@ -157,6 +157,14 @@ class VenueController extends Controller
         $venue->delete();
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->search_term;
+
+        $venues = Venue::query()->where('name', 'like', '%' . $search . '%')->get();
+
+        return view('venue.index', ['venues' => $venues]);
+    }
 
     public function toBoolean($value)
     {

@@ -58,7 +58,8 @@
                     <ul class="nav navbar-nav">
                         <li>
                             @if (Request::path() === 'venues' || Request::path() === 'search_venues' || Request::path() === 'show_venue')
-                                <form class="search" method="post" action="/venues/search">
+                                <form class="search" method="post" action="venues/search">
+                                    @csrf
                                     <input class="form-control" type="search" name="search_term"
                                         placeholder="Find a venue" aria-label="Search">
                                 </form>
