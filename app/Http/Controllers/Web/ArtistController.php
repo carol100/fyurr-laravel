@@ -14,8 +14,19 @@ class ArtistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if (array_key_exists('search_term', $request->query())) {
+            $search_term = $request->query('search_term');
+
+            $artists = Artist::where('first_name', 'like', '%' . $search_term . '%')
+                ->orWhere('last_name', 'like', '%' . $search_term . '%')
+                ->orWhere('stage_name', 'like', '%' . $search_term . '%')
+                ->get();
+    
+            return view('artist.search', ['artists' => $artists]);
+        }
+        
         return view('artist.index', ['artists' => Artist::all()]);
     }
 

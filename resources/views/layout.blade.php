@@ -64,8 +64,8 @@
                                         placeholder="Find a venue" aria-label="Search">
                                 </form>
                             @endif
-                            @if (Request::path() === 'artists' || Request::path() === 'search_artists' || Request::path() === 'show_artist')
-                                <form class="search" method="post" action="/artists/search">
+                            @if (Request::path() === 'artists')
+                                <form class="search">
                                     <input class="form-control" type="search" name="search_term"
                                         placeholder="Find an artist" aria-label="Search">
                                 </form>
