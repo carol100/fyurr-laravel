@@ -26,9 +26,9 @@ class ArtistRequest extends FormRequest
         $rules = [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'stage_name' => 'max:255',
+            'stage_name' => 'required|max:255',
             'phone_number' => 'required|min:10|max:10|unique:artists,phone_number',
-            'email' => 'email|max:255|unique:artists,email',
+            'email' => 'nullable|email|max:255|unique:artists,email',
             'image' => 'mimes:jpg,png',
             'address' => 'max:255',
             'facebook_link' => 'max:255',
@@ -37,7 +37,7 @@ class ArtistRequest extends FormRequest
 
         if ($this->method() == 'PATCH') {
             $rules['phone_number'] = 'required|min:10|max:10|unique:artists,phone_number,' . $this->route('artist');
-            $rules['email'] = 'email|max:255|unique:artists,email,' . $this->route('artist');
+            $rules['email'] = 'nullable|email|max:255|unique:artists,email,' . $this->route('artist');
         }
         
         return $rules;
