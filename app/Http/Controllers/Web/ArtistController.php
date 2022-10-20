@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Web;
 
-use App\Http\Controllers\Controller;
 use App\Models\Artist;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ArtistRequest;
 
 class ArtistController extends Controller
 {
@@ -46,28 +46,17 @@ class ArtistController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArtistRequest $request)
     {
-        $request->validate([
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'stage_name' => 'max:255',
-            'phone_number' => 'required|min:10|max:10|unique:artists,phone_number',
-            'email' => 'email|max:255|unique:artists,email',
-            'image' => 'mimes:jpg,png',
-            'address' => 'max:255',
-            'facebook_link' => 'max:255',
-            'instagram_link' => 'max:255',
-        ]);
-
-        $image = null;
-        if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('images', 'public');
-        }
+        $request->validated();
 
         $artist = new Artist();
-        $artist->fill($request->all());
-        $artist->image = $image;
+        $artist->fill($request->except(['_token', 'genres', 'image']));
+        
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('images', 'public');
+            $artist->image = $image;
+        }
 
         if ($request->genres) {
             $genres = implode(',', $request->genres);
@@ -86,28 +75,9 @@ class ArtistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Artist $artist)
     {
-        $artist = Artist::find($id);
-
-        // $artist = array([
-        //     'id' => $artist->id,
-        //     'first_name' => $artist->first_name,
-        //     'last_name' => $artist->last_name,
-        //     'stage_name' => $artist->stage_name,
-        //     'phone_number' => $artist->phone_number,
-        //     'email' => $artist->email,
-        //     'address' => $artist->address,
-        //     'image' => $artist->image,
-        //     'genres' => explode(',', $artist->image),
-        //     'facebook_link' => $artist->facebook_link,
-        //     'instagram_link' => $artist->instagram_link,
-        //     'available' => $artist->available,
-        // ]);
-
-        $genres = explode(',', $artist->genres);
-
-        return view('artist.show', ['artist' => $artist, 'genres' => $genres]);
+        return view('artist.show', ['artist' => $artist]);
     }
 
     /**
@@ -116,16 +86,9 @@ class ArtistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Artist $artist)
     {
-        $artist = Artist::find($id);
-
-        $genres = [];
-        if ($artist->genres) {
-            $genres = explode(',', $artist->genres);
-        }
-
-        return view('artist.edit', ['artist' => $artist, 'genres' => $genres]);
+        return view('artist.edit', ['artist' => $artist]);
     }
 
     /**
@@ -135,31 +98,16 @@ class ArtistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArtistRequest $request, Artist $artist)
     {
-        $artist = Artist::find($id);
+        $request->validated();
 
-        $request->validate([
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'stage_name' => 'max:255',
-            'phone_number' => ['required', 'min:10', 'max:10', Rule::unique('artists')->ignore($artist)],
-            'email' => ['email', 'max:255', Rule::unique('artists')->ignore($artist)],
-            'image' => 'mimes:jpg,png',
-            'address' => 'max:255',
-            'facebook_link' => 'max:255',
-            'instagram_link' => 'max:255',
-        ]);
+        $artist->fill($request->except(['_token', 'genres', 'image']));
 
-
-        $image = $artist->image;
         if ($request->hasFile('image')) {
             $image = $request->file('image')->store('images', 'public');
+            $artist->image = $image;
         }
-
-
-        $artist->fill($request->all());
-        $artist->image = $image;
 
         if ($request->genres) {
             $genres = implode(',', $request->genres);
@@ -181,10 +129,5 @@ class ArtistController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function toBoolean($value)
-    {
-        return filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
     }
 }
