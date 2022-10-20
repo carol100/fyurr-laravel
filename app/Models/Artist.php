@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Artist extends BaseModel
 {
+    public function getGenresAttribute($key)
+    {
+        return explode(',', $key);
+        
+    }
 }
