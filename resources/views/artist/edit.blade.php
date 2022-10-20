@@ -77,24 +77,24 @@
                 <label>Genres</label>
                 <small>Ctrl+Click to select multiple</small>
                 <select name="genres[]" id="" class="form-control" multiple>
-                    <option value="genre 1"
-                    @if ($errors->any()) @if (in_array('genre 1', old('genres'))) selected @endif @else
-                        @if (in_array('genre 1', $genres)) selected @endif @endif>Genre 1</option>
-                    <option value="genre 2"
-                    @if ($errors->any()) @if (in_array('genre 2', old('genres'))) selected @endif @else
-                        @if (in_array('genre 2', $genres)) selected @endif @endif>Genre 2</option>
-                    <option value="genre 3"
-                    @if ($errors->any()) @if (in_array('genre 3', old('genres'))) selected @endif @else
-                        @if (in_array('genre 3', $genres)) selected @endif @endif>Genre 3</option>
-                    <option value="genre 4"
-                    @if ($errors->any()) @if (in_array('genre 4', old('genres'))) selected @endif @else
-                        @if (in_array('genre 4', $genres)) selected @endif @endif>Genre 4</option>
-                    <option value="genre 5"
-                    @if ($errors->any()) @if (in_array('genre 5', old('genres'))) selected @endif @else
-                        @if (in_array('genre 5', $genres)) selected @endif @endif>Genre 5</option>
-                    <option value="genre 6"
-                    @if ($errors->any()) @if (in_array('genre 6', old('genres'))) selected @endif @else
-                        @if (in_array('genre 6', $genres)) selected @endif @endif>Genre 6</option>
+                    <option value="genre-1"
+                    @if ($errors->any()) @if (in_array('genre-1', old('genres'))) selected @endif @else
+                        @if (in_array('genre-1', $artist->genres)) selected @endif @endif>Genre 1</option>
+                    <option value="genre-2"
+                    @if ($errors->any()) @if (in_array('genre-2', old('genres'))) selected @endif @else
+                        @if (in_array('genre-2', $artist->genres)) selected @endif @endif>Genre 2</option>
+                    <option value="genre-3"
+                    @if ($errors->any()) @if (in_array('genre-3', old('genres'))) selected @endif @else
+                        @if (in_array('genre-3', $artist->genres)) selected @endif @endif>Genre 3</option>
+                    <option value="genre-4"
+                    @if ($errors->any()) @if (in_array('genre-4', old('genres'))) selected @endif @else
+                        @if (in_array('genre-4', $artist->genres)) selected @endif @endif>Genre 4</option>
+                    <option value="genre-5"
+                    @if ($errors->any()) @if (in_array('genre-5', old('genres'))) selected @endif @else
+                        @if (in_array('genre-5', $artist->genres)) selected @endif @endif>Genre 5</option>
+                    <option value="genre-6"
+                    @if ($errors->any()) @if (in_array('genre-6', old('genres'))) selected @endif @else
+                        @if (in_array('genre-6', $artist->genres)) selected @endif @endif>Genre 6</option>
                 </select>
             </div>
 

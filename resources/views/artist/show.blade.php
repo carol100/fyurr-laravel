@@ -14,7 +14,7 @@
                 ID: {{ $artist->id }}
             </p>
             <div class="genres">
-                @foreach ($genres as $genre)
+                @foreach ($artist->genres as $genre)
                     <span class="genre">{{ $genre }}</span>
                 @endforeach
             </div>
