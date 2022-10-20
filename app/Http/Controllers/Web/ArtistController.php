@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web;
 
+use App\Models\Genre;
 use App\Models\Artist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,7 +38,7 @@ class ArtistController extends Controller
      */
     public function create()
     {
-        return view('artist.create');
+        return view('artist.create', ['genres' => Genre::all()]);
     }
 
     /**
@@ -48,8 +49,6 @@ class ArtistController extends Controller
      */
     public function store(ArtistRequest $request)
     {
-        $request->validated();
-
         $artist = new Artist();
         $artist->fill($request->except(['_token', 'genres', 'image']));
         
@@ -88,7 +87,7 @@ class ArtistController extends Controller
      */
     public function edit(Artist $artist)
     {
-        return view('artist.edit', ['artist' => $artist]);
+        return view('artist.edit', ['artist' => $artist, 'genres' => Genre::all()]);
     }
 
     /**
@@ -98,10 +97,10 @@ class ArtistController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArtistRequest $request, Artist $artist)
+    public function update(ArtistRequest $request, $id)
     {
-        $request->validated();
-
+        $artist = Artist::find($id);
+        
         $artist->fill($request->except(['_token', 'genres', 'image']));
 
         if ($request->hasFile('image')) {
