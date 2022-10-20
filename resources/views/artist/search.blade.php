@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+    <a href="{{ route('artists.index') }}"><button class="btn btn-secondary btn-sm">Back</button></a>
+
     <h3>Number of search results for "{{ request()->query('search_term') }}": {{ count($artists) }}</h3>
     <ul class="items">
         @foreach ($artists as $artist)

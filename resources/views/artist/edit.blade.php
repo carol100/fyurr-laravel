@@ -6,8 +6,7 @@
 
 @section('content')
     <div class="form-wrapper">
-        <form method="post" class="form" action="{{ route('artists.update', ['artist' => $artist->id]) }}"
-            enctype="multipart/form-data">
+        <form method="post" class="form" action="{{ route('artists.update', $artist->id) }}" enctype="multipart/form-data">
             @method('PATCH')
             @csrf
             <h3 class="form-heading">Edit artist {{ "$artist->first_name $artist->last_name" }}</h3>
@@ -16,7 +15,8 @@
                 <label>First Name</label>
                 <input type="text" class="form-control" name="first_name"
                     @if ($errors->any()) value="{{ old('first_name') }}" @else value="{{ $artist->first_name }}" @endif
-                    autofocus>
+                    autofocus
+                >
                 @error('first_name')
                     <span class="help-block">{{ $message }}</span>
                 @enderror
@@ -77,24 +77,22 @@
                 <label>Genres</label>
                 <small>Ctrl+Click to select multiple</small>
                 <select name="genres[]" id="" class="form-control" multiple>
-                    <option value="genre-1"
-                    @if ($errors->any()) @if (in_array('genre-1', old('genres'))) selected @endif @else
-                        @if (in_array('genre-1', $artist->genres)) selected @endif @endif>Genre 1</option>
-                    <option value="genre-2"
-                    @if ($errors->any()) @if (in_array('genre-2', old('genres'))) selected @endif @else
-                        @if (in_array('genre-2', $artist->genres)) selected @endif @endif>Genre 2</option>
-                    <option value="genre-3"
-                    @if ($errors->any()) @if (in_array('genre-3', old('genres'))) selected @endif @else
-                        @if (in_array('genre-3', $artist->genres)) selected @endif @endif>Genre 3</option>
-                    <option value="genre-4"
-                    @if ($errors->any()) @if (in_array('genre-4', old('genres'))) selected @endif @else
-                        @if (in_array('genre-4', $artist->genres)) selected @endif @endif>Genre 4</option>
-                    <option value="genre-5"
-                    @if ($errors->any()) @if (in_array('genre-5', old('genres'))) selected @endif @else
-                        @if (in_array('genre-5', $artist->genres)) selected @endif @endif>Genre 5</option>
-                    <option value="genre-6"
-                    @if ($errors->any()) @if (in_array('genre-6', old('genres'))) selected @endif @else
-                        @if (in_array('genre-6', $artist->genres)) selected @endif @endif>Genre 6</option>
+                    @foreach ($genres as $genre)
+                        <option 
+                            value="{{ $genre->name }}"
+                            @if ($errors->any()) 
+                                @if (in_array($genre->name, old('genres'))) 
+                                    selected 
+                                @endif 
+                            @else
+                                @if (in_array($genre->name, $artist->genres)) 
+                                    selected
+                                @endif 
+                            @endif
+                        >
+                            {{ $genre->name }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
 
@@ -119,8 +117,15 @@
             <div form-group>
                 <label>Available</label>
                 <input type="checkbox" name="available"
-                @if ($errors->any()) @if (old('available') == 'on') checked @endif @else
-                    @if ($artist->available) checked @endif @endif>
+                    @if ($errors->any()) 
+                        @if (old('available') == 'on') 
+                            checked 
+                        @endif 
+                    @else
+                        @if ($artist->available) 
+                            checked 
+                        @endif 
+                    @endif>
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary btn-lg btn-block" value="Edit Artist">
