@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+    <a href="{{ route('home') }}"><button class="btn btn-secondary btn-sm">Back</button></a>
+    
     <div class="form-wrapper">
         <form method="post" class="form" action="{{ route('artists.store') }}" enctype="multipart/form-data">
             @csrf
@@ -60,12 +62,18 @@
                 <label>Genres</label>
                 <small>Ctrl+Click to select multiple</small>
                 <select name="genres[]" id="" class="form-control" multiple>
-                    <option value="genre-1">Genre 1</option>
-                    <option value="genre-2">Genre 2</option>
-                    <option value="genre-3">Genre 3</option>
-                    <option value="genre-4">Genre 4</option>
-                    <option value="genre-5">Genre 5</option>
-                    <option value="genre-6">Genre 6</option>
+                    @foreach ($genres as $genre)
+                        <option 
+                            value="{{ $genre->name }}"
+                            @if ($errors->any() && old('genres')) 
+                                @if (in_array($genre->name, old('genres'))) 
+                                    selected 
+                                @endif 
+                            @endif
+                        >
+                            {{ strtoupper($genre->name) }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group  @error('facebook_link') has-error has-feedback @enderror">
@@ -84,7 +92,13 @@
             </div>
             <div form-group>
                 <label>Available</label>
-                <input type="checkbox" name="available">
+                <input type="checkbox" name="available" 
+                    @if ($errors->any())
+                        @if (old('available') && old('available') == 'on') 
+                            checked 
+                        @endif
+                    @endif
+                >
             </div>
             <div class="form-group"><input type="submit" class="btn btn-primary btn-lg btn-block" value="Create Artist">
             </div>

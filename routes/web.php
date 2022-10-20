@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::resource('artists', ArtistController::class);
+Route::get('artists/{artist}', [ArtistController::class, 'show'])->name('artists.show');
+Route::get('artists/{artist}/edit', [ArtistController::class, 'edit'])->name('artists.edit');
 
 Route::resource('venues', VenueController::class);
 Route::post('venues/search', [VenueController::class, 'search']);

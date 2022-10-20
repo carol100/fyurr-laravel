@@ -5,10 +5,12 @@
 @endsection
 
 @section('content')
-    <ul class="items">
+    <a href="{{ route('home') }}"><button class="btn btn-secondary btn-sm">Back</button></a>
+
+    <ul class="items" style="margin-top: 15px">
         @foreach ($artists as $artist)
             <li>
-                <a href="/artists/{{ $artist->id }}">
+                <a href="{{ route('artists.show', $artist->id) }}">
                     <i class="fas fa-users"></i>
                     <div class="item">
                         <h5>

@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+    <a href="{{ route('artists.index') }}"><button class="btn btn-secondary btn-sm">Back</button></a>
+    
     <div class="row">
         <div class="col-sm-6">
             <h1 class="monospace">
@@ -14,9 +16,13 @@
                 ID: {{ $artist->id }}
             </p>
             <div class="genres">
-                @foreach ($genres as $genre)
-                    <span class="genre">{{ $genre }}</span>
-                @endforeach
+                @if ($artist->genres[0])
+                    @foreach ($artist->genres as $genre)
+                        <span class="genre">{{ $genre }}</span>
+                    @endforeach
+                @else
+                    <span class="genre">N/A</span>
+                @endif
             </div>
             <p>
                 <i class="fas fa-phone-alt"></i> {{ $artist->phone_number }}
@@ -48,7 +54,11 @@
             @endif
         </div>
         <div class="col-sm-6">
-            <img src="{{ asset('storage/' . $artist->image) }}" alt="Artist Image" />
+            @if ($artist->image)
+                <img src="{{ asset('storage/' . $artist->image) }}"alt="Artist Image" />
+            @else
+                <img src="{{ asset('assets/img/default-image.png') }}" alt="">
+            @endif
         </div>
     </div>
     {{-- <section>
@@ -80,7 +90,7 @@
         </div>
     </section> --}}
 
-    <a href="{{ route('artists.edit', ['artist' => $artist->id]) }}">
+    <a href="{{ route('artists.edit', $artist->id) }}">
         <button class="btn btn-primary btn-lg">Edit</button>
     </a>
 @endsection
