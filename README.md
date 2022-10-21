@@ -14,13 +14,13 @@ Tech used include:
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/carol100/fyurr-laravel.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd fyurr-laravel
 ```
 
 Install dependencies
@@ -33,5 +33,10 @@ Start the server
 
 ```bash
   php artisan serve
+```
+Run vite manifest
+
+```bash
+  npm install && npm run dev
 ```
 
