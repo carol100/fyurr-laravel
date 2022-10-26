@@ -4,6 +4,8 @@
 @endsection
 
 @section('content')
+    <a href="{{ route('venues.create') }}"><button class="btn btn-secondary btn-sm">Add Venue</button></a>
+
     <ul class="items">
         @foreach ($venues as $venue)
             <li>
